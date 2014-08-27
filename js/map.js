@@ -14,3 +14,19 @@ map.invalidateSize();
 		'overflow': 'hidden',
 		'height': '100%'
 		})
+		
+		
+		
+function refreshData()
+{
+  // Load the content of "path/to/script.php" into an element with ID "#container".
+  $('#table1').load('mysql.php');
+}
+
+// Execute every 5 seconds
+window.setInterval(refreshData, 5000);
+
+
+$( document ).ready(function() {
+    refreshData();
+});

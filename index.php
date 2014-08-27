@@ -22,7 +22,7 @@
   <div class="container">
     <div class="row">
       <div id="data" class="col-md-4">
-        <table class="table table-striped table-responsive">
+        <table id="table1" class="table table-striped table-responsive">
           <thead>
             <tr>
               <th>Phenomenon</th>
@@ -32,9 +32,7 @@
           </thead>
           <tbody>
             <tr>
-              <?php
-                  include "mysql.php"
-              ?>
+
             </tr>
           </tbody>
         </table>
