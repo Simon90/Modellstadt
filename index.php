@@ -22,20 +22,7 @@
   <div class="container">
     <div class="row">
       <div id="data" class="col-md-4">
-        <table id="table1" class="table table-striped table-responsive">
-          <thead>
-            <tr>
-              <th>Phenomenon</th>
-              <th>Value</th>
-			  <th>Unit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-
-            </tr>
-          </tbody>
-        </table>
+        <table id="table1" class="table table-striped table-responsive"> </table>
       </div>
       <div id="map-area" class="col-md-8">
         <div id="map"></div>
