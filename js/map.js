@@ -13,8 +13,6 @@ map.invalidateSize();
 
 
 	
-			
-
 // refresh data 
 // returns json object		
 function refreshData() 
@@ -38,6 +36,7 @@ var markers = new L.layerGroup();
 // create table and map content
 function createContent(data)  {
 	map.removeLayer(markers); // clear map 
+	markers.clearLayers(); //clear marker layer
 	var type = "";
 	var value = "";
 	var unit = "";
@@ -64,9 +63,36 @@ function createContent(data)  {
 function createMarkers(lat, lon, type, value, unit)  {
 	var marker = new L.marker();
 	marker.setLatLng([lat, lon]);
+	if (type == "Temperature") marker.setIcon(thermometer);
+		else if (type == "Humidity") marker.setIcon(humidity);
+			else if (type == "Light Intensity") marker.setIcon(light);
 	marker.bindPopup(type +": "+value+" "+unit);
 	markers.addLayer(marker);
 }
+
+
+// icons
+var humidity = L.icon({
+	iconUrl: 'icons/Humidity.png',
+	iconSize: [25, 42], // size of the icon
+	iconAnchor: [13, 42] // point of the icon which will correspond to marker's location
+	//popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+var thermometer = L.icon({
+	iconUrl: 'icons/thermometer.png',
+	iconSize: [25, 54], // size of the icon
+	iconAnchor: [13, 54] // point of the icon which will correspond to marker's location
+	//popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+
+var light = L.icon({
+	iconUrl: 'icons/light.png',
+	iconSize: [25, 42], // size of the icon
+	iconAnchor: [13, 42] // point of the icon which will correspond to marker's location
+	//popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
 
 
 
