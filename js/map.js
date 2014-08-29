@@ -51,8 +51,10 @@ function createContent(data)  {
 		lat = (item.lat)
 		lon = (item.lon)
 		createMarkers(lat, lon, type, value, unit);
-		tbl_row = "<td>"+type+"</td><td>"+value+"</td><td>"+unit+"</td><td>"; //fill row
-		tbl_body += "<tr>"+tbl_row+"</tr>"; // fill table body
+		if (type != "Parking") {
+			tbl_row = "<td>"+type+"</td><td>"+value+"</td><td>"+unit+"</td><td>"; //fill row
+			tbl_body += "<tr>"+tbl_row+"</tr>"; // fill table body
+		}
 	});
 	markers.addTo(map); //add markers to map
 	$("#table1 tbody").html(tbl_body); //insert into body of table1
@@ -63,9 +65,17 @@ function createContent(data)  {
 function createMarkers(lat, lon, type, value, unit)  {
 	var marker = new L.marker();
 	marker.setLatLng([lat, lon]);
-	if (type == "Temperature") marker.setIcon(thermometer);
-		else if (type == "Humidity") marker.setIcon(humidity);
-			else if (type == "Light Intensity") marker.setIcon(light);
+	if (type == "Temperature") 
+		marker.setIcon(thermometer);
+	else if (type == "Humidity") 
+		marker.setIcon(humidity);
+	else if (type == "Light Intensity") 
+		marker.setIcon(light);
+	else if (type == "Parking") { 
+		if (value == "0") 
+			marker.setIcon(pfree); 
+		else marker.setIcon(pfull);
+	}												
 	marker.bindPopup(type +": "+value+" "+unit);
 	markers.addLayer(marker);
 }
@@ -94,7 +104,19 @@ var light = L.icon({
 	//popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
+var pfree = L.icon({
+	iconUrl: 'icons/park1.png',
+	iconSize: [30, 30], // size of the icon
+	iconAnchor: [15, 15] // point of the icon which will correspond to marker's location
+	//popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
 
+var pfull = L.icon({
+	iconUrl: 'icons/park2.png',
+	iconSize: [30, 30], // size of the icon
+	iconAnchor: [15, 15] // point of the icon which will correspond to marker's location
+	//popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
 
 
 $( document ).ready(function() {
