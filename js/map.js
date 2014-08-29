@@ -71,12 +71,18 @@ function createMarkers(lat, lon, type, value, unit)  {
 		marker.setIcon(humidity);
 	else if (type == "Light Intensity") 
 		marker.setIcon(light);
+	else if (type == "Sound Pressure") 
+		marker.setIcon(sound);
 	else if (type == "Parking") { 
 		if (value == "0") 
 			marker.setIcon(pfree); 
 		else marker.setIcon(pfull);
-	}												
-	marker.bindPopup(type +": "+value+" "+unit);
+	}
+	if (type == "Parking") {
+		if (value == "0") marker.bindPopup("Free Spot!");
+			else marker.bindPopup("Taken Spot!");
+	}
+	else marker.bindPopup(type +": "+value+" "+unit);
 	markers.addLayer(marker);
 }
 
@@ -115,6 +121,13 @@ var pfull = L.icon({
 	iconUrl: 'icons/park2.png',
 	iconSize: [30, 30], // size of the icon
 	iconAnchor: [15, 15] // point of the icon which will correspond to marker's location
+	//popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+var sound = L.icon({
+	iconUrl: 'icons/sound.png',
+	iconSize: [40, 40], // size of the icon
+	iconAnchor: [20, 20] // point of the icon which will correspond to marker's location
 	//popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
